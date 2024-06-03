@@ -149,4 +149,28 @@ span {
 }
 .calc-box span:active {
   background-color: rgb(139, 186, 116);
+}
+
+.menu-box {
+  width: 400px;
+  font-size: 20px;
+  margin: 0 auto;
+  background-color: rgb(240, 232, 131);
+}
+.menu-box .menu {
+  display: flex;
+}
+.menu-box li {
+  padding: 10px;
+  border: 1px solid black;
+  position: relative;
+}
+.menu-box .submenu {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: rgb(130, 82, 82);
+}
+.menu-box .closed {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

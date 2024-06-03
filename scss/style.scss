@@ -102,3 +102,29 @@ span {
 
 
 /////////////////////////////////////////////////////////////////////////////////
+
+.menu-box {
+  width: 400px;
+  font-size: 20px;
+  margin: 0 auto;
+  background-color: rgb(240, 232, 131);
+  .menu {
+    display: flex;
+  }
+  li {
+    padding: 10px;
+    border: 1px solid black;
+    position: relative;
+  }
+
+  .submenu {
+    position: absolute;
+    top:40px;
+    left: 0;
+    background-color: rgb(130, 82, 82);
+  }
+  .closed {
+    display: none;
+
+  }
+}
