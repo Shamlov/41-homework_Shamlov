@@ -42,50 +42,47 @@ btn.addEventListener('click', addLike)
 // !!!!!!!!!!!!!!!! вопрос хочу чтобы при нажатии и удержании кнопки мыши кнопка с лайками была например красного цвета. как только нажатую кнопку мыши отпустили . она вернулась первоначальное состояни
 // ---------------------------------------------------------------------------------------------
 
+
+
+
 /*Создать html-страницу «Калькулятор». Реализовать его функ-
 циональность.*/
 
-// НЕ УДАЛОСЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 let dataOutput = document.querySelector('#dataOutput')
 let keyboardContainer = document.querySelector('#keyboardContainer')
-function getOutputResult (e) {  
-    let number                      // получаю каждую цифру при клике
-    let operation                  // знак опереции
-    let number1 = undefined        //  получаю число целиком
-    let rez
-    if(!e.target.closest('span')) {     // делегирование
+let regexp = new RegExp ('\\d', '')              // почему с флагом g не работает?   создадим регулярное выражение для отсева цифр 
+let rez
+
+function getOutputResult(e) {
+    if(!e.target.closest('span')) {               // делегирование
         return
     }
-    let regexp = new RegExp ('\\d', 'gi')   //   создадим резулярное выражение для отсева цифр 
-    if(regexp.test(e.target.dataset.value)) {     // отсортеруем цифры и знаки
-        number = e.target.dataset.value
-    } else {
-        operation = e.target.dataset.value
+
+    let selectedButton = e.target.dataset.value
+
+    if(regexp.test(selectedButton)) {             // отсортеруем цифры 
+        dataOutput.textContent += selectedButton  // сформируем из цифр число и содовим в dataOutput
+    } 
+
+
+
+
+    switch (true) {
+        case selectedButton == "+":
+
+        break
     }
-    if(number != undefined) {                   // сохраним число 
-        dataOutput.textContent += number
-    } else {
-        number1 = parseInt(dataOutput.textContent)
+
+    if(selectedButton == "=") {
+        console.log(rez )
+
     }
-    if(operation == '+' && '-' && '*' && '/'&& '='){   // при клике на символ сохраним число в результат для  того чтобы не плодить переменные 
-        rez = number1
-    }
-    // код ниже не могу собрать . хотя решение где то на поверхности
-    if(number != undefined) {
-        dataOutput.textContent += number
-    } else {
-        number1 = parseInt(dataOutput.textContent)
-    }
-    if(operation == '+') {
-        console.log(rez)
-        console.log(number1)
-    }_
+
 }
 keyboardContainer.addEventListener('click', getOutputResult)
 
 // не удалось.
-
-
 //////////////////////////////////////////////////////////////
 
 /*Создать html-страницу с меню, которое имеет выпадающие 
@@ -95,6 +92,7 @@ keyboardContainer.addEventListener('click', getOutputResult)
 let menu = document.querySelector('#menu')
 menu.addEventListener('click', (e) => {
     if(!e.target.closest('li')) {     // делегирование
+        // menu.children..classList.remove('closed')   !!!!! как убирать класс у при клике не на элемент li
         return
     }
     e.target.firstElementChild.classList.toggle('closed')   // тут примения универсальность и обращаюсь к предку элемента на который кликнули. 
@@ -103,3 +101,18 @@ menu.addEventListener('click', (e) => {
 
 
 //////////////////////////////////////////////////////////////
+
+let btnTop =  document.querySelector('.btn-top')
+
+window.addEventListener('scroll', function() {
+    if(pageYOffset > 100 ) {
+        btnTop.classList.remove('none-btn')
+    } else {
+        btnTop.classList.add('none-btn')
+    }
+    btnTop.innerHTML = Math.floor(pageYOffset) + 'px' ;
+});
+function scrollUp() {
+    window.scrollTo(0,0)
+}
+btnTop.addEventListener('click', scrollUp)
